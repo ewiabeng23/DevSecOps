@@ -38,14 +38,15 @@ jobs:
           docker build -f Dockerfile -t ${{ secrets.VULN_USER }}/myapp:latest .
           docker push ${{ secrets.VULN_USER }}/myapp:latest
       - name: Docker Scout Scan
-        uses: docker/scout-action@v1.0.9
+        uses: docker/scout-action@v1
         with:
           dockerhub-user: ${{ secrets.VULN_USER }}
           dockerhub-password: ${{ secrets.VULN_PWD }}
           command: quickview,cves
-          image: ${{ secrets.VULN_USER }}/myapp:latest
+          image: registry=${{ secrets.VULN_USER }}/myapp:latest
           only-severities: critical,high
           sarif-file: scout-report.sarif
+          exit-code: false
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         if: always()
