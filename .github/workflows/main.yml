@@ -33,8 +33,8 @@ jobs:
       - name: Docker Scout Scan
         uses: docker/scout-action@v1.0.9
         with:
-          dockerhub-user: ${{ secrets.REPO_USER }}
-          dockerhub-password: ${{ secrets.REPO_PWD }}
+          dockerhub-user: ${{ secrets.VULN_USER }}
+          dockerhub-password: ${{ secrets.VULN_PWD }}
           command: quickview,cves
           image: myapp:latest
           only-severities: critical,high
