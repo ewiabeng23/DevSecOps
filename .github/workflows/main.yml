@@ -43,7 +43,7 @@ jobs:
           dockerhub-user: ${{ secrets.VULN_USER }}
           dockerhub-password: ${{ secrets.VULN_PWD }}
           command: quickview,cves
-          image: registry=${{ secrets.VULN_USER }}/myapp:latest
+          image: ${{ secrets.VULN_USER }}/myapp:latest
           only-severities: critical,high
           sarif-file: scout-report.sarif
           exit-code: false
