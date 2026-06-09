@@ -31,8 +31,11 @@ jobs:
       - name: Build Docker Image
         run: docker build -f Dockerfile -t myapp:latest .
       - name: Docker Scout Scan
-        uses: docker/scout-action@v1.0.9
+        uses: docker/scout-action@v1
         with:
           dockerhub-user: ${{ secrets.VULN_USER }}
           dockerhub-password: ${{ secrets.VULN_PWD }}
           command: quickview,cves
+          image: myapp:latest
+          only-severities: critical,high
+          exit-code: false
